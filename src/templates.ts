@@ -4,7 +4,7 @@ export const nanoConfig = `{
 
 export const gitConfig = `{
   "pre-commit": "./node_modules/.bin/nano-staged",
-  "pre-push": "",
+  "pre-push": ""
 }`;
 
 export const prettierConfig = `{}`;
