@@ -1,10 +1,13 @@
 import ora, { oraPromise } from "ora";
-import { execaCommand } from "execa";
 import { access, readFile, writeFile } from "node:fs/promises";
+import { promisify } from "node:util";
+import child_process from "node:child_process";
 
 import { nanoConfig, gitConfig, prettierConfig } from "./templates.js";
 
 import type { CliFlags } from "./index.js";
+
+const exec = promisify(child_process.exec);
 
 export const runCommands = async (flags: CliFlags) => {
   console.clear();
@@ -15,7 +18,7 @@ export const runCommands = async (flags: CliFlags) => {
 
 export const nanoStaged = async () => {
   let nanoSpinner = ora("Installing nano-staged…").start();
-  await execaCommand("pnpm install -D nano-staged");
+  await exec("pnpm install -D nano-staged");
   nanoSpinner.succeed("nano-staged installed.");
 
   let nanoConfigSpinner = ora("Adding .nano-staged.json…").start();
@@ -30,7 +33,7 @@ export const nanoStaged = async () => {
 
 export const simpleGitHooks = async () => {
   let gitSpinner = ora("Installing simple-git-hooks…").start();
-  await execaCommand("pnpm install -D simple-git-hooks");
+  await exec("pnpm install -D simple-git-hooks");
   gitSpinner.succeed("simple-git-hooks installed.");
 
   let setupSpinner = ora("Setting up simple-git-hooks…").start();
@@ -54,7 +57,7 @@ export const simpleGitHooks = async () => {
       );
       spinner.succeed("postinstall script created.");
     } catch (e) {
-      await execaCommand("npm init -y");
+      await exec("npm init -y");
       await writePackageJson();
     }
   };
@@ -70,19 +73,15 @@ export const simpleGitHooks = async () => {
     }
   };
 
-  await Promise.all([
-    execaCommand("git init"),
-    writePackageJson(),
-    writeConfig(),
-  ]);
+  await Promise.all([exec("git init"), writePackageJson(), writeConfig()]);
 
-  await execaCommand("pnpx simple-git-hooks");
+  await exec("pnpx simple-git-hooks");
   setupSpinner.succeed("simple-git-hooks setup complete.");
 };
 
 export const prettier = async () => {
   let prettierSpinner = ora("Installing prettier…").start();
-  await execaCommand("pnpm install -D prettier");
+  await exec("pnpm install -D prettier");
   prettierSpinner.succeed("prettier installed.");
 
   let prettierConfigSpinner = ora("Adding Prettier config…").start();
