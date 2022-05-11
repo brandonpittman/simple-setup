@@ -66,9 +66,10 @@ export const simpleGitHooks = async () => {
     let spinner = ora("Creating .simple-git-hooks.json…").start();
 
     try {
-      await writeFile(".simple-git-hooks.json", gitConfig, "utf8");
+      await access(".simple-git-hooks.json");
       spinner.warn(".simple-git-hooks.json already exists!");
     } catch {
+      await writeFile(".simple-git-hooks.json", gitConfig, "utf8");
       spinner.succeed("Created .simple-git-hooks.json.");
     }
   };
