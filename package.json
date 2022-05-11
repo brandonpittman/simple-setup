@@ -1,7 +1,8 @@
 {
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "tsc --esModuleInterop -d src/index.ts --outDir build",
+    "build": "tsc",
     "prepublishOnly": "pnpm run build"
   },
   "devDependencies": {
@@ -24,8 +25,8 @@
     "url": "git+https://github.com/brandonpittman/simple-setup.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Brandon Pittman",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/brandonpittman/simple-setup/issues"
   },
