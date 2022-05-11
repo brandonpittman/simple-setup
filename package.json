@@ -18,6 +18,7 @@
   "name": "simple-setup",
   "version": "1.0.0",
   "main": "build/index.js",
+  "bin": "build/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brandonpittman/simple-setup.git"
