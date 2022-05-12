@@ -5,11 +5,20 @@
     "build": "tsc",
     "prepublishOnly": "pnpm run build",
     "prepare": "npx simple-git-hooks",
-    "publish": "clean-publish"
+    "publish": "clean-publish",
+    "prepublishOnly": "rm -rf ./package && clean-publish",
+    "postpublish": "rm -rf ./package"
+  },
+  "clean-publish": {
+    "withoutPublish": true,
+    "tempDir": "package"
   },
   "files": [
     "build"
   ],
+  "publishConfig": {
+    "directory": "package"
+  },
   "devDependencies": {
     "clean-publish": "^4.0.0",
     "nano-staged": "^0.8.0",
