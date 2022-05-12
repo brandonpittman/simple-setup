@@ -1,22 +1,9 @@
 {
   "version": "1.0.10",
   "type": "module",
-  "scripts": {
-    "build": "tsc",
-    "prepublishOnly": "pnpm run build",
-    "postinstall": "npx simple-git-hooks",
-    "publish": "clean-publish --fields scripts postinstall"
-  },
   "files": [
     "build"
   ],
-  "devDependencies": {
-    "clean-publish": "^4.0.0",
-    "nano-staged": "^0.8.0",
-    "prettier": "^2.6.2",
-    "simple-git-hooks": "^2.7.0",
-    "typescript": "4.8.0-dev.20220510"
-  },
   "dependencies": {
     "meow": "^10.1.2",
     "ora": "^6.1.0"
@@ -28,12 +15,14 @@
     "type": "git",
     "url": "git+https://github.com/brandonpittman/simple-setup.git"
   },
-  "keywords": [],
   "author": "Brandon Pittman",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/brandonpittman/simple-setup/issues"
   },
   "homepage": "https://github.com/brandonpittman/simple-setup#readme",
-  "description": ""
+  "description": "",
+  "scripts": {
+    "postinstall": "npx simple-git-hooks"
+  }
 }
