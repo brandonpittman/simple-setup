@@ -3,7 +3,7 @@
 import meow from "meow";
 import { runCommands } from "./actions.js";
 
-export const { flags } = meow(
+export const cli = meow(
   `
 Simple Setup
 
@@ -43,10 +43,14 @@ Examples
         type: "boolean",
         alias: "h",
       },
+      version: {
+        type: "boolean",
+        alias: "v",
+      },
     },
   }
 );
 
-export type CliFlags = typeof flags;
+export type Cli = typeof cli;
 
-runCommands(flags);
+runCommands(cli);

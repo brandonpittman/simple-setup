@@ -1,16 +1,23 @@
-import ora, { oraPromise } from "ora";
+import ora from "ora";
 import { access, readFile, writeFile } from "node:fs/promises";
 import { promisify } from "node:util";
 import child_process from "node:child_process";
 
 import { nanoConfig, gitConfig, prettierConfig } from "./templates.js";
 
-import type { CliFlags } from "./index.js";
+import type { Cli } from "./index.js";
 
 const exec = promisify(child_process.exec);
 
-export const runCommands = async (flags: CliFlags) => {
+export const runCommands = async ({
+  input,
+  flags,
+  showHelp,
+  showVersion,
+}: Cli) => {
   console.clear();
+  if (flags.help || input[0] === "help") showHelp();
+  if (flags.version) showVersion();
   if (flags.nano) await nanoStaged();
   if (flags.git) await simpleGitHooks();
   if (flags.prettier) await prettier();

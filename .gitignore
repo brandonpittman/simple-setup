@@ -1,2 +1,7 @@
 node_modules/
 build
+
+.nano-staged.json
+.simple-git-hooks.json
+.prettierrc
+.prettierignore
