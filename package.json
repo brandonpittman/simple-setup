@@ -5,7 +5,7 @@
     "build": "tsc",
     "prepublishOnly": "pnpm run build",
     "prepare": "npx simple-git-hooks",
-    "publish": "clean-publish --fields scripts prepare"
+    "publish": "clean-publish"
   },
   "files": [
     "build"
