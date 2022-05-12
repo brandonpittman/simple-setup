@@ -4,8 +4,8 @@
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "pnpm run build",
-    "postinstall": "npx simple-git-hooks",
-    "publish": "clean-publish --fields scripts postinstall"
+    "prepare": "npx simple-git-hooks",
+    "publish": "clean-publish --fields scripts prepare"
   },
   "files": [
     "build"
