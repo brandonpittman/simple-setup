@@ -25,12 +25,17 @@
     "type": "git",
     "url": "git+https://github.com/brandonpittman/simple-setup.git"
   },
-  "keywords": [],
+  "keywords": [
+    "git",
+    "prettier",
+    "hooks",
+    "staged"
+  ],
   "author": "Brandon Pittman",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/brandonpittman/simple-setup/issues"
   },
   "homepage": "https://github.com/brandonpittman/simple-setup#readme",
-  "description": ""
+  "description": "A simple tool to setup all the little helpers every repo needs."
 }
