@@ -1,12 +1,11 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.1",
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "pnpm run build",
+    "prepublishOnly": "rm -rf ./package && clean-publish",
     "prepare": "npx simple-git-hooks",
     "publish": "clean-publish",
-    "prepublishOnly": "rm -rf ./package && clean-publish",
     "postpublish": "rm -rf ./package"
   },
   "clean-publish": {
