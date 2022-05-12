@@ -5,3 +5,5 @@ build
 .simple-git-hooks.json
 .prettierrc
 .prettierignore
+
+tmp*
