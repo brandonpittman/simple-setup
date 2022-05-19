@@ -45,29 +45,29 @@ export const simpleGitHooks = async () => {
 
   let setupSpinner = ora("Setting up simple-git-hooks…").start();
 
-  const writePackageJson = async () => {
-    let spinner = ora(
-      "Adding postinstall script for simple-git-hooks…"
-    ).start();
-
-    try {
-      await access("package.json");
-      let packageJSON = JSON.parse(await readFile("package.json", "utf8"));
-      packageJSON.scripts = {
-        ...packageJSON.scripts,
-        ...{ postinstall: "npx simple-git-hooks" },
-      };
-      await writeFile(
-        "package.json",
-        JSON.stringify(packageJSON, null, 2),
-        "utf8"
-      );
-      spinner.succeed("postinstall script created.");
-    } catch (e) {
-      await exec("npm init -y");
-      await writePackageJson();
-    }
-  };
+  // const writePackageJson = async () => {
+  //   let spinner = ora(
+  //     "Adding postinstall script for simple-git-hooks…"
+  //   ).start();
+  //
+  //   try {
+  //     await access("package.json");
+  //     let packageJSON = JSON.parse(await readFile("package.json", "utf8"));
+  //     packageJSON.scripts = {
+  //       ...packageJSON.scripts,
+  //       ...{ postinstall: "npx simple-git-hooks" },
+  //     };
+  //     await writeFile(
+  //       "package.json",
+  //       JSON.stringify(packageJSON, null, 2),
+  //       "utf8"
+  //     );
+  //     spinner.succeed("postinstall script created.");
+  //   } catch (e) {
+  //     await exec("npm init -y");
+  //     await writePackageJson();
+  //   }
+  // };
 
   const writeConfig = async () => {
     let spinner = ora("Creating .simple-git-hooks.json…").start();
@@ -81,7 +81,11 @@ export const simpleGitHooks = async () => {
     }
   };
 
-  await Promise.all([exec("git init"), writePackageJson(), writeConfig()]);
+  await Promise.all([
+    exec("git init"),
+    // writePackageJson(),
+    writeConfig(),
+  ]);
 
   await exec("pnpx simple-git-hooks");
   setupSpinner.succeed("simple-git-hooks setup complete.");
