@@ -2,7 +2,7 @@
   "version": "1.2.2",
   "type": "module",
   "scripts": {
-    "build": "tsup src --format esm --clean",
+    "build": "tsup src --format esm --clean --no-splitting",
     "prepublishOnly": "npm run build",
     "test": "npm run typecheck",
     "typecheck": "tsc --noEmit"
